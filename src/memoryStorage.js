@@ -4,7 +4,7 @@ let events = [
   {
     name: 'The Beatles',
     type: 'Concierto',
-    date: moment('2019-12-05', 'YYYY-MM-DD').unix(),
+    date: moment('2019-12-07', 'YYYY-MM-DD').unix(),
     place: 'Londres',
     description: 'Concierto en la azotea'
   },

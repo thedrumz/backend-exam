@@ -58,7 +58,18 @@ const formatFilters = filters => {
 
 const addWeatherInfoToEvents = async events => {
   for(event of events) {
-    const wheather = await axios.get(config.get('weatherAPI.current') + 'q=' + event.place);
+    const eventDate = moment.unix(event.date);
+    const now = moment();
+    const daysDiff = eventDate.diff(now, 'days');
+    let weatherApiUrl = config.get('weatherAPI.current');
+
+    if(daysDiff < 0) {
+      return events;
+    }else if(daysDiff >= 1) {
+      weatherApiUrl = config.get('weatherAPI.future');
+    }
+
+    const wheather = await axios.get(`${weatherApiUrl}q=${event.place}`);
     event.weather = wheather.data;
   }
 
