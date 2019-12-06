@@ -66,7 +66,7 @@ app.post('/events', (req, res) => {
     description: req.body.description
   }
 
-  if(!utils.checkMandatoryFieldsValidity(event)) {
+  if(!utils.eventsValidator(event)) {
     res.status(400).send();
     return;
   }
@@ -78,8 +78,8 @@ app.post('/events', (req, res) => {
   res.send();
 });
 
+// Express initialization
 const port = config.get('server.port');
-
 app.listen(port, () => {
   // logger.info(`Starting points of interest application listening on port ${port}`);
 });

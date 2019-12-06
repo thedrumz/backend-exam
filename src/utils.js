@@ -4,11 +4,11 @@ const axiosCacheAdapter = require('axios-cache-adapter');
 
 const axios = axiosCacheAdapter.setup({
   cache: {
-    maxAge: 0.5 * 60 * 1000
+    maxAge: 30 * 60 * 1000
   }
 })
 
-const checkMandatoryFieldsValidity = event => {
+const eventsValidator = event => {
   const mandatoryFields = ['name', 'type', 'date', 'place'];
 
   for(let field of mandatoryFields) {
@@ -77,7 +77,7 @@ const addWeatherInfoToEvents = async events => {
 }
 
 module.exports = {
-  checkMandatoryFieldsValidity,
+  eventsValidator,
   formatFields,
   formatFilters,
   addWeatherInfoToEvents

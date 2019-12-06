@@ -26,12 +26,12 @@ const getAllEvents = (filters) => {
     return events;
   }
   
-  const result = events.filter(event => _byPassedFilters(event, filters));
+  const result = events.filter(event => _filterByPassedFilters(event, filters));
   
   return result;
 }
 
-const _byPassedFilters = (event, filters) => {
+const _filterByPassedFilters = (event, filters) => {
   let passFilters = true;
 
   for(let key in filters) {

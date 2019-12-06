@@ -1,7 +1,7 @@
 {
-  "name": "prueba-back",
+  "name": "espectaculos-caballero",
   "version": "0.0.1",
-  "description": "Espectáculos CaballeroTM",
+  "description": "Espectáculos CaballeroTM API Rest",
   "main": "app.js",
   "scripts": {
     "start": "nodemon src/app.js",
