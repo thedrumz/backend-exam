@@ -4,14 +4,14 @@ let events = [
   {
     name: 'The Beatles',
     type: 'Concierto',
-    date: moment('2019-12-05', 'YYYY-MM-DD'),
+    date: moment('2019-12-05', 'YYYY-MM-DD').unix(),
     place: 'Londres',
     description: 'Concierto en la azotea'
   },
   {
     name: 'Led Zeppelin',
     type: 'Concierto',
-    date: moment('1977-07-15', 'YYYY-MM-DD'),
+    date: moment('1977-07-15', 'YYYY-MM-DD').unix(),
     place: 'Seattle',
     description: 'Gran concierto'
   }
@@ -36,7 +36,7 @@ const _byPassedFilters = (event, filters) => {
 
   for(let key in filters) {
     if(key === 'date') {
-      if(event[key].unix() !== filters[key].unix()) {
+      if(event[key] !== filters[key].unix()) {
         passFilters = false;
         break;
       }
