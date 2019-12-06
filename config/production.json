@@ -1,8 +1,13 @@
 {
-    "server": {
-        "port": 3000
-    },
-    "logging": {
-        "threshold": "debug"
-    }
+  "server": {
+    "port": 3333
+  },
+  "logging": {
+    "threshold": "info"
+  },
+  "dateFormat": "DD/MM/YYYY",
+  "weatherAPI": {
+    "current": "http://api.openweathermap.org/data/2.5/weather?APPID=47a7d41dda42ab2b76f1abc11824a880&",
+    "future": "https://samples.openweathermap.org/data/2.5/forecast/daily?appid=47a7d41dda42ab2b76f1abc11824a880&"
+  }
 }
