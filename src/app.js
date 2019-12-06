@@ -19,7 +19,7 @@ const logger = createLogger({
   ),
   defaultMeta: { service: 'user-service' },
   transports: [
-    new transports.File({ filename: 'debug.log', level: 'debug' })
+    new transports.File({ filename: 'logs/debug.log', level: 'debug' })
   ]
 });
 
@@ -48,20 +48,7 @@ app.use((req, res, next) => {
 // Endpoints
 
 app.get('/events', async (req, res) => {
-  let filters = {};
-
-  if(req.query.name !== undefined) {
-    filters.name = req.query.name.toLowerCase().trim();
-  }
-  if(req.query.type !== undefined) {
-    filters.type = req.query.type.toLowerCase().trim();
-  }
-  if(req.query.date !== undefined) {
-    filters.date = req.query.date.toLowerCase().trim();
-  }
-  if(req.query.place !== undefined) {
-    filters.place = req.query.place.toLowerCase().trim();
-  }
+  const filters = utils.formatFilters(req.query);
 
   const events = storage.getAllEvents(filters);
 
