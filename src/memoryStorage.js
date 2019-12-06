@@ -17,25 +17,40 @@ let events = [
   }
 ];
 
+const setEvents = data => {
+  events = data;
+}
+
 const getAllEvents = (filters) => {
   if(filters === {}) {
     return events;
   }
   
-  const result = events.filter(event => {
-    let passFilters = true;
+  const result = events.filter(event => _byPassedFilters(event, filters));
+  
+  return result;
+}
 
-    for(key in filters) {
-      if(!(key in event) || event[key].toLowerCase() !== filters[key]) {
+const _byPassedFilters = (event, filters) => {
+  let passFilters = true;
+
+  for(let key in filters) {
+    if(key === 'date') {
+      if(event[key].unix() !== filters[key].unix()) {
         passFilters = false;
         break;
       }
+
+      continue;
     }
 
-    return passFilters;
-  })
-  
-  return result;
+    if(!(key in event) || event[key].toLowerCase() !== filters[key]) {
+      passFilters = false;
+      break;
+    }
+  }
+
+  return passFilters;
 }
 
 const saveEvent = event => {
@@ -43,6 +58,8 @@ const saveEvent = event => {
 }
 
 module.exports = {
+  setEvents,
   getAllEvents,
-  saveEvent
+  saveEvent,
+  events
 }
